@@ -63,30 +63,16 @@ public void update()
 	
 	// This must be done in case the material does not modify the normal.
 	shadingNormal.set(normal);
-	
-	// Quick hack for smooth triangles: calculate interpolated normals
-	if (item instanceof Triangle)
-	{
-		Triangle t = (Triangle) item;
-		if (t.vertexNormals[0] != null && t.vertexNormals[1] != null && t.vertexNormals[2] != null)
-		{
-			Vector4 temp = new Vector4();
-			t.barycentricCoords(ray, temp);
-			shadingNormal.set(temp.getX(), temp.getY(), temp.getZ());
-			shadingNormal.multiplyAndSet(t.vertexNormals[0], t.vertexNormals[1], t.vertexNormals[2]);
-			shadingNormal.normalizeAndSet();
-		}
-	}
-	
+		
+	// get the shading normal from the material, 
+	// use it to calculate shading tangent and cotangent
 	item.getMaterial().getNormal(this);
+	shadingNormal.findBase(shadingTangent, shadingCotangent);
 	
 	// calculate reflected vector according to shading normal
 	double scale = ray.v.multiply(shadingNormal);
 	reflectv.set(ray.v).addAndSet(shadingNormal, -2*scale);
 	reflectv.normalizeAndSet();
-	
-	// calculate tangent and cotangent to shading normal
-	shadingNormal.findBase(shadingTangent, shadingCotangent);
 }
 
 }

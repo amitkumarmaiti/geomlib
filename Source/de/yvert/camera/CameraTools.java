@@ -175,7 +175,11 @@ public static float glZToDepth(Camera camera, float x)
 }
 
 public static String serialize(Camera camera)
-{ throw new UnsupportedOperationException(); }
+{
+	System.err.println("WARNING: CameraTools.serialize() NOT IMPLEMENTED!!!");
+	return "ARGH!!! NOT IMPLEMENTED!!!";
+//	throw new UnsupportedOperationException();
+}
 
 public static Camera deserialize(String s)
 { throw new UnsupportedOperationException(); }

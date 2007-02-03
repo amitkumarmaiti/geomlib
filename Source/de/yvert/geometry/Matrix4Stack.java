@@ -63,6 +63,9 @@ public Matrix4Stack scale(double sx, double sy, double sz)
 	return multiply(tempMatrix);
 }
 
+public Matrix4Stack scale(Vector3 s)
+{ return scale(s.getX(), s.getY(), s.getZ()); }
+
 public Matrix4Stack translate(Vector3 v, double scale)
 { return translate(scale*v.getX(), scale*v.getY(), scale*v.getZ()); }
 

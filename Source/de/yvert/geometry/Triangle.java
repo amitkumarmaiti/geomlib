@@ -61,7 +61,18 @@ public final void calculateNormal()
 
 @Override
 public void getNormal(IntersectionResult result, Vector3 geonormal)
-{ geonormal.set(n); }
+{ 
+	if (vertexNormals[0] != null && vertexNormals[1] != null && vertexNormals[2] != null)
+	{
+		Vector4 temp = new Vector4();
+		barycentricCoords(result.ray, temp);
+		geonormal.set(temp.getX(), temp.getY(), temp.getZ());
+		geonormal.multiplyAndSet(vertexNormals[0], vertexNormals[1], vertexNormals[2]);
+		geonormal.normalizeAndSet();
+	}
+	else
+		geonormal.set(n); 
+}
 
 /*
  * Finds the smallest bounding box inside box that complete surrounds

@@ -28,6 +28,9 @@
 	
 	<target name="dist" depends="compile_source" description="generate the distribution">
 		<jar jarfile="${jarfile}" basedir="${build}" manifest="MANIFEST" />
+	</target>
+	
+	<target name="sign" depends="dist" description="sign the generated jar">
 		<signjar jar="${jarfile}" alias="me" storepass="123456" keystore="/home/ulfjack/Playground/data/myKeyStore" />
 	</target>
 	
