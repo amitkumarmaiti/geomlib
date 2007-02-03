@@ -3,8 +3,10 @@ package de.yvert.geometry;
 
 import de.yvert.cr.profiles.IntersectionResult;
 import de.yvert.cr.profiles.Material;
+import de.yvert.cr.profiles.NormalMap;
 import de.yvert.textures.TexCoordFunction;
 import de.yvert.textures.Texture;
+import de.yvert.textures.TextureData;
 
 /**
  * A <code>SceneItem</code> extends a {@link SceneObject} by certain 
@@ -16,14 +18,40 @@ public abstract class SceneItem extends SceneObject
 {
 
 protected Material material;
-protected Texture[] textures;
-protected TexCoordFunction[] texfunctions;
+protected NormalMap normalMap;
+
+protected TextureData materialTexData;
+protected TextureData normalMapTexData; 
 
 public final Material getMaterial()
 { return material; }
 
 public final void setMaterial(Material material)
 { this.material = material; }
+
+public final NormalMap getNormalMap()
+{ return normalMap; }
+
+public final void setNormalMap(NormalMap normalMap)
+{ this.normalMap = normalMap; }
+
+public final TextureData getMaterialTextureData()
+{ return materialTexData; }
+
+public final void setMaterialTextureData(TextureData data)
+{ materialTexData = data; }
+
+public final TextureData getNormalMapTextureData()
+{ return normalMapTexData; }
+
+public final void setNormalMapTextureData(TextureData data)
+{ normalMapTexData = data; }
+
+
+// FIXME -- old code -- might be removed soon
+
+protected Texture[] textures;
+protected TexCoordFunction[] texfunctions;
 
 public Texture[] getTextures()
 { return textures; }
@@ -37,6 +65,10 @@ public TexCoordFunction[] getTexCoordFunctions()
 public void setTexCoordFunctions(TexCoordFunction[] texfunctions)
 { this.texfunctions = texfunctions; }
 
+// FIXME -- old code end
+
+
+/** Used to calculate the geometry normal, not the shading normal! */
 public abstract void getNormal(IntersectionResult result, Vector3 geonormal);
 
 public abstract double getMinX();
@@ -54,6 +86,7 @@ public BoundingBox getBoundingBox()
 }
 
 public abstract BoundingSphere getBoundingSphere();
+
 // distance at which the ray hits this object or -1, if the ray does not hit this object
 public abstract double distance(Ray ray);
 

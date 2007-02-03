@@ -31,18 +31,15 @@ public InputStream getResourceAsStream(String name)
 @Override
 public synchronized Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException
 {
-	Class c = findLoadedClass(name);
+	Class<?> c = findLoadedClass(name);
 	if (c != null)
 		return c;
 	
 	if (name.startsWith("compiled."))
 	{
-		if (c == null)
-		{
-			byte[] data = lookupClassData(name);
-			if (data == null) throw new ClassNotFoundException();
-			c = defineClass(name, data, 0, data.length);
-		}
+		byte[] data = lookupClassData(name);
+		if (data == null) throw new ClassNotFoundException();
+		c = defineClass(name, data, 0, data.length);
 		if (resolve) resolveClass(c);
 		return c;
 	}

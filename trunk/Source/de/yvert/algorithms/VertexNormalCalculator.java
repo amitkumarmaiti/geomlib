@@ -386,14 +386,14 @@ protected int[][] eliminateDiscontinuities(Hashtable<Edge,EdgeInfo> adjacencyLis
 	float[][] newTexcoords = new float[vertexList.size()][2];
 	int[][] newTriangles = new int[triangles.length][3];
 	
-	ListIterator it1 = vertexList.listIterator(0);
-	ListIterator it2 = indexList.listIterator(0);
+	ListIterator<int[]> it1 = vertexList.listIterator(0);
+	ListIterator<Integer> it2 = indexList.listIterator(0);
 
 	int currentIndex = 0;
 	while (it1.hasNext())
 	{		
-		int[] vertex = (int[])it1.next();
-		int index = ((Integer)it2.next()).intValue();
+		int[] vertex = it1.next();
+		int index = it2.next().intValue();
 		newAdjacencyVTList[currentIndex] = vertex;
 		newVertices[currentIndex][0] = vertices[index][0];
 		newVertices[currentIndex][1] = vertices[index][1];
