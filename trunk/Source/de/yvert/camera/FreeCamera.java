@@ -84,7 +84,7 @@ public void rotateLeft(double amount)
 public void rotateUp(double amount)
 {
 	Quaternion rot = new Quaternion(new Vector3(1, 0, 0), amount/180.0);
-	addedRotation.multiplyAndSet(rot);
+	addedRotation = rot.multiplyAndSet(addedRotation);
 }
 
 public void rollLeft(double amount)

@@ -3,10 +3,10 @@ package de.yvert.geometry;
 
 import de.yvert.cr.profiles.IntersectionResult;
 import de.yvert.cr.profiles.Material;
-import de.yvert.cr.profiles.NormalMap;
+//import de.yvert.cr.profiles.NormalMap;
 import de.yvert.textures.TexCoordFunction;
 import de.yvert.textures.Texture;
-import de.yvert.textures.TextureData;
+//import de.yvert.textures.TextureData;
 
 /**
  * A <code>SceneItem</code> extends a {@link SceneObject} by certain 
@@ -18,10 +18,13 @@ public abstract class SceneItem extends SceneObject
 {
 
 protected Material material;
+
+/*
 protected NormalMap normalMap;
 
 protected TextureData materialTexData;
-protected TextureData normalMapTexData; 
+protected TextureData normalMapTexData;
+*/ 
 
 public final Material getMaterial()
 { return material; }
@@ -29,6 +32,7 @@ public final Material getMaterial()
 public final void setMaterial(Material material)
 { this.material = material; }
 
+/*
 public final NormalMap getNormalMap()
 { return normalMap; }
 
@@ -46,6 +50,7 @@ public final TextureData getNormalMapTextureData()
 
 public final void setNormalMapTextureData(TextureData data)
 { normalMapTexData = data; }
+*/
 
 
 // FIXME -- old code -- might be removed soon

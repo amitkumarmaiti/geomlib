@@ -12,7 +12,8 @@ public final class CameraTools
 
 public static double calcFieldOfViewX(double fieldOfViewY, double aspectRatio)
 {
-	return 2.0*Math.atan(aspectRatio*Math.tan(fieldOfViewY/2.0));
+	double fovY = Math.toRadians(fieldOfViewY/2.0);
+	return Math.toDegrees(2.0*Math.atan(aspectRatio*Math.tan(fovY)));
 }
 
 public static void setResolution(Camera camera, int width, int height)
@@ -69,7 +70,7 @@ public static Matrix4 createGluPerspective(Camera camera)
 	double fieldOfViewY = camera.getFieldOfViewY();
 	Matrix4 result = new Matrix4();
 	double halfFovy = fieldOfViewY /2.0;
-	double coT = 1.0 / Math.tan(halfFovy*Math.PI/180.0);
+	double coT = 1.0 / Math.tan(Math.toRadians(halfFovy));
 	result.setEntry(0, 0, coT/camera.getAspectRatio());
 	result.setEntry(1, 1, coT);
 	result.setEntry(2, 2, (farPlane+nearPlane)/(nearPlane-farPlane));
@@ -99,7 +100,7 @@ public static void setMatrix3(Camera camera, Matrix3 matrix)
 public static double getDist(Camera camera)
 {
 	double halfFovy = camera.getFieldOfViewY() /2.0;
-	double coT = 1.0 / Math.tan(halfFovy*Math.PI/180.0);
+	double coT = 1.0 / Math.tan(Math.toRadians(halfFovy));
 	double distCache = coT*camera.getHeight()/2.0;
 	return distCache;
 }
